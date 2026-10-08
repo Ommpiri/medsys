@@ -1,0 +1,529 @@
+{
+  "_comment": "Curated clinical core. 'symptoms' = supporting associations {symptom_id: association_strength 0-1}. 'against' = findings that argue against the condition {symptom_id: penalty 0-1}. Strengths are curator-assigned heuristics (evidence_type=expert_curated_heuristic); the cited sources describe the symptom PRESENCE, not the numeric weight. ICD codes are NOT typed by hand: the terminology mapper looks them up in the NLM Clinical Tables APIs using 'icd11_titles' / 'nlm_names'.",
+  "diseases": [
+    {
+      "id": "influenza", "name": "Influenza (Flu)", "aliases": ["flu", "influenza", "seasonal flu", "grippe"],
+      "category": "Respiratory infection", "severity": "moderate",
+      "description": "A contagious respiratory illness caused by influenza viruses, usually with sudden onset.",
+      "age_groups": ["infant", "child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["<1d", "1-3d", "3-7d"],
+      "icd11_titles": ["Influenza, virus not identified", "Influenza due to identified seasonal influenza virus"],
+      "nlm_names": ["Influenza"],
+      "sources": [
+        {"source": "cdc", "url": "https://www.cdc.gov/flu/signs-symptoms/index.html"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/flu.html"}
+      ],
+      "symptoms": {"fever": 0.8, "high_fever": 0.7, "chills": 0.6, "cough": 0.7, "dry_cough": 0.5, "sore_throat": 0.5, "runny_nose": 0.4, "stuffy_nose": 0.4, "muscle_pain": 0.7, "body_pain": 0.7, "headache": 0.6, "fatigue": 0.8, "vomiting": 0.3, "diarrhea": 0.3},
+      "against": {}
+    },
+    {
+      "id": "common_cold", "name": "Common Cold", "aliases": ["cold", "head cold", "acute nasopharyngitis", "upper respiratory infection"],
+      "category": "Respiratory infection", "severity": "mild",
+      "description": "A mild viral infection of the nose and throat.",
+      "age_groups": ["infant", "child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["1-3d", "3-7d", "1-4w"],
+      "icd11_titles": ["Acute nasopharyngitis"],
+      "nlm_names": ["Common cold"],
+      "sources": [
+        {"source": "cdc", "url": "https://www.cdc.gov/common-cold/about/index.html"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/commoncold.html"}
+      ],
+      "symptoms": {"runny_nose": 0.9, "stuffy_nose": 0.8, "sneezing": 0.8, "sore_throat": 0.7, "cough": 0.5, "headache": 0.3, "body_pain": 0.3, "mild_fever": 0.4, "fatigue": 0.3, "postnasal_drip": 0.4, "watery_eyes": 0.3},
+      "against": {"high_fever": 0.3}
+    },
+    {
+      "id": "covid19", "name": "COVID-19", "aliases": ["coronavirus disease", "sars-cov-2 infection", "covid", "corona"],
+      "category": "Respiratory infection", "severity": "moderate",
+      "description": "A respiratory illness caused by the SARS-CoV-2 virus, ranging from mild to severe.",
+      "age_groups": ["infant", "child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["1-3d", "3-7d", "1-4w"],
+      "icd11_titles": ["COVID-19", "COVID-19, virus identified"],
+      "nlm_names": ["COVID-19"],
+      "sources": [
+        {"source": "cdc", "url": "https://www.cdc.gov/covid/signs-symptoms/index.html"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/covid19coronavirusdisease2019.html"}
+      ],
+      "symptoms": {"fever": 0.6, "chills": 0.4, "cough": 0.6, "dry_cough": 0.5, "shortness_of_breath": 0.6, "fatigue": 0.6, "muscle_pain": 0.4, "body_pain": 0.4, "headache": 0.4, "loss_of_taste_smell": 0.9, "sore_throat": 0.4, "stuffy_nose": 0.3, "runny_nose": 0.3, "nausea": 0.3, "vomiting": 0.3, "diarrhea": 0.3},
+      "against": {}
+    },
+    {
+      "id": "pneumonia", "name": "Pneumonia", "aliases": ["lung infection", "chest infection"],
+      "category": "Respiratory infection", "severity": "severe",
+      "description": "An infection that inflames the air sacs in one or both lungs.",
+      "age_groups": ["infant", "child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["1-3d", "3-7d", "1-4w"],
+      "icd11_titles": ["Pneumonia, organism unspecified", "Pneumonia"],
+      "nlm_names": ["Pneumonia"],
+      "sources": [
+        {"source": "medlineplus", "url": "https://medlineplus.gov/pneumonia.html"},
+        {"source": "nhlbi", "url": "https://www.nhlbi.nih.gov/health/pneumonia/symptoms"}
+      ],
+      "symptoms": {"cough": 0.8, "productive_cough": 0.8, "fever": 0.7, "high_fever": 0.6, "chills": 0.6, "shortness_of_breath": 0.8, "rapid_breathing": 0.6, "chest_pain": 0.6, "fatigue": 0.5, "sweating": 0.4, "confusion": 0.3, "loss_of_appetite": 0.3, "nausea": 0.2},
+      "against": {}
+    },
+    {
+      "id": "asthma", "name": "Asthma", "aliases": ["bronchial asthma", "asthma attack", "reactive airway disease"],
+      "category": "Respiratory (chronic airway)", "severity": "moderate",
+      "description": "A chronic condition in which the airways narrow and swell, making breathing difficult at times.",
+      "age_groups": ["child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["<1d", "1-3d", "3-7d", "1-4w", ">4w"],
+      "icd11_titles": ["Asthma"],
+      "nlm_names": ["Asthma"],
+      "sources": [
+        {"source": "medlineplus", "url": "https://medlineplus.gov/asthma.html"},
+        {"source": "nhlbi", "url": "https://www.nhlbi.nih.gov/health/asthma/symptoms"}
+      ],
+      "symptoms": {"wheezing": 0.9, "shortness_of_breath": 0.8, "chest_tightness": 0.8, "cough": 0.6, "dry_cough": 0.4},
+      "against": {"high_fever": 0.2}
+    },
+    {
+      "id": "copd", "name": "Chronic Obstructive Pulmonary Disease (COPD)", "aliases": ["copd", "emphysema", "chronic bronchitis"],
+      "category": "Respiratory (chronic airway)", "severity": "moderate",
+      "description": "A long-term lung disease that makes it hard to breathe, most often linked to smoking.",
+      "age_groups": ["adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": [">4w"],
+      "icd11_titles": ["Chronic obstructive pulmonary disease"],
+      "nlm_names": ["Chronic obstructive pulmonary disease (COPD)", "COPD"],
+      "sources": [
+        {"source": "medlineplus", "url": "https://medlineplus.gov/copd.html"},
+        {"source": "nhlbi", "url": "https://www.nhlbi.nih.gov/health/copd/symptoms"}
+      ],
+      "symptoms": {"shortness_of_breath": 0.8, "cough": 0.8, "productive_cough": 0.7, "wheezing": 0.6, "chest_tightness": 0.5, "fatigue": 0.4},
+      "against": {}
+    },
+    {
+      "id": "acute_bronchitis", "name": "Acute Bronchitis (Chest Cold)", "aliases": ["chest cold", "bronchitis"],
+      "category": "Respiratory infection", "severity": "mild",
+      "description": "Inflammation of the airways in the lungs, usually after a viral infection, causing a lingering cough.",
+      "age_groups": ["child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["3-7d", "1-4w"],
+      "icd11_titles": ["Acute bronchitis"],
+      "nlm_names": ["Bronchitis, acute", "Acute bronchitis"],
+      "sources": [
+        {"source": "cdc", "url": "https://www.cdc.gov/acute-bronchitis/about/index.html"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/acutebronchitis.html"}
+      ],
+      "symptoms": {"cough": 0.9, "productive_cough": 0.7, "chest_tightness": 0.4, "fatigue": 0.4, "sore_throat": 0.3, "runny_nose": 0.3, "stuffy_nose": 0.3, "mild_fever": 0.3, "headache": 0.3, "body_pain": 0.3, "wheezing": 0.3, "shortness_of_breath": 0.3},
+      "against": {"high_fever": 0.25}
+    },
+    {
+      "id": "strep_throat", "name": "Strep Throat", "aliases": ["streptococcal pharyngitis", "strep"],
+      "category": "ENT infection", "severity": "moderate",
+      "description": "A bacterial throat infection caused by group A Streptococcus.",
+      "age_groups": ["child", "adolescent", "adult"], "sex_relevance": "any",
+      "typical_duration": ["<1d", "1-3d", "3-7d"],
+      "icd11_titles": ["Streptococcal pharyngitis"],
+      "nlm_names": ["Strep throat"],
+      "sources": [
+        {"source": "cdc", "url": "https://www.cdc.gov/group-a-strep/about/strep-throat.html"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/strepthroat.html"}
+      ],
+      "symptoms": {"sore_throat": 0.9, "painful_swallowing": 0.8, "fever": 0.7, "swollen_tonsils": 0.8, "swollen_lymph_nodes": 0.7, "headache": 0.4, "nausea": 0.3, "vomiting": 0.3, "stomach_pain": 0.3, "rash": 0.2},
+      "against": {"cough": 0.25, "runny_nose": 0.2, "hoarse_voice": 0.15}
+    },
+    {
+      "id": "sinusitis", "name": "Sinusitis (Sinus Infection)", "aliases": ["sinus infection", "rhinosinusitis", "acute sinusitis"],
+      "category": "ENT infection", "severity": "mild",
+      "description": "Inflammation of the sinuses, often following a cold, causing facial pressure and congestion.",
+      "age_groups": ["child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["3-7d", "1-4w"],
+      "icd11_titles": ["Acute sinusitis"],
+      "nlm_names": ["Sinusitis", "Sinusitis, acute"],
+      "sources": [
+        {"source": "cdc", "url": "https://www.cdc.gov/sinus-infection/about/index.html"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/sinusitis.html"}
+      ],
+      "symptoms": {"facial_pain": 0.9, "stuffy_nose": 0.8, "postnasal_drip": 0.7, "runny_nose": 0.6, "headache": 0.5, "cough": 0.4, "fever": 0.3, "sore_throat": 0.3, "fatigue": 0.3},
+      "against": {}
+    },
+    {
+      "id": "allergic_rhinitis", "name": "Allergic Rhinitis (Hay Fever)", "aliases": ["hay fever", "seasonal allergies", "nasal allergies", "pollen allergy"],
+      "category": "Allergic / ENT", "severity": "mild",
+      "description": "An allergic reaction to airborne substances such as pollen, dust mites or pet dander.",
+      "age_groups": ["child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["<1d", "1-3d", "3-7d", "1-4w", ">4w"],
+      "icd11_titles": ["Allergic rhinitis", "Allergic rhinitis due to pollen"],
+      "nlm_names": ["Allergic rhinitis", "Hay fever"],
+      "sources": [
+        {"source": "medlineplus", "url": "https://medlineplus.gov/hayfever.html"}
+      ],
+      "symptoms": {"sneezing": 0.9, "runny_nose": 0.8, "stuffy_nose": 0.7, "itchy_eyes": 0.8, "watery_eyes": 0.7, "itchy_nose_throat": 0.8, "postnasal_drip": 0.4, "cough": 0.3, "fatigue": 0.3, "red_eyes": 0.3},
+      "against": {"fever": 0.4, "high_fever": 0.4, "body_pain": 0.2}
+    },
+    {
+      "id": "otitis_media", "name": "Middle Ear Infection (Otitis Media)", "aliases": ["ear infection", "otitis media", "acute otitis media"],
+      "category": "ENT infection", "severity": "mild",
+      "description": "An infection of the middle ear, most common in young children.",
+      "age_groups": ["infant", "child", "adolescent", "adult"], "sex_relevance": "any",
+      "typical_duration": ["<1d", "1-3d", "3-7d"],
+      "icd11_titles": ["Acute otitis media", "Otitis media"],
+      "nlm_names": ["Ear infection", "Otitis media"],
+      "sources": [
+        {"source": "cdc", "url": "https://www.cdc.gov/ear-infection/about/index.html"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/earinfections.html"}
+      ],
+      "symptoms": {"ear_pain": 0.95, "fever": 0.5, "hearing_loss": 0.5, "ear_discharge": 0.5, "irritability": 0.4, "sleep_problems": 0.3, "headache": 0.2},
+      "against": {}
+    },
+    {
+      "id": "conjunctivitis", "name": "Conjunctivitis (Pink Eye)", "aliases": ["pink eye", "conjunctivitis", "eye infection"],
+      "category": "Eye", "severity": "mild",
+      "description": "Inflammation of the thin membrane covering the white of the eye and inner eyelid.",
+      "age_groups": ["infant", "child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["<1d", "1-3d", "3-7d", "1-4w"],
+      "icd11_titles": ["Conjunctivitis"],
+      "nlm_names": ["Conjunctivitis", "Pink eye"],
+      "sources": [
+        {"source": "cdc", "url": "https://www.cdc.gov/conjunctivitis/about/index.html"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/pinkeye.html"}
+      ],
+      "symptoms": {"red_eyes": 0.9, "eye_discharge": 0.8, "itchy_eyes": 0.6, "watery_eyes": 0.7, "light_sensitivity": 0.2},
+      "against": {}
+    },
+    {
+      "id": "migraine", "name": "Migraine", "aliases": ["migraine headache", "sick headache"],
+      "category": "Neurological", "severity": "moderate",
+      "description": "A primary headache disorder with recurrent, often throbbing headaches that can include nausea and sensitivity to light or sound.",
+      "age_groups": ["child", "adolescent", "adult", "older_adult"], "sex_relevance": "female_predominant",
+      "typical_duration": ["<1d", "1-3d"],
+      "icd11_titles": ["Migraine"],
+      "nlm_names": ["Migraine", "Migraine headache"],
+      "sources": [
+        {"source": "medlineplus", "url": "https://medlineplus.gov/migraine.html"},
+        {"source": "ninds", "url": "https://www.ninds.nih.gov/health-information/disorders/migraine"}
+      ],
+      "symptoms": {"headache": 0.7, "severe_headache": 0.6, "one_sided_headache": 0.9, "nausea": 0.7, "vomiting": 0.5, "light_sensitivity": 0.8, "sound_sensitivity": 0.7, "visual_aura": 0.7, "dizziness": 0.3, "fatigue": 0.3, "blurred_vision": 0.3},
+      "against": {"fever": 0.3, "high_fever": 0.3}
+    },
+    {
+      "id": "tension_headache", "name": "Tension-Type Headache", "aliases": ["tension headache", "stress headache"],
+      "category": "Neurological", "severity": "mild",
+      "description": "The most common type of headache, typically felt as a dull pressure or tight band around the head.",
+      "age_groups": ["child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["<1d", "1-3d", "3-7d", "1-4w", ">4w"],
+      "icd11_titles": ["Tension-type headache"],
+      "nlm_names": ["Tension headache", "Headache, tension"],
+      "sources": [
+        {"source": "medlineplus", "url": "https://medlineplus.gov/headache.html"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/ency/article/000797.htm"}
+      ],
+      "symptoms": {"head_pressure": 0.9, "headache": 0.7, "muscle_tension": 0.5, "sleep_problems": 0.3, "light_sensitivity": 0.2, "sound_sensitivity": 0.2, "poor_concentration": 0.2},
+      "against": {"vomiting": 0.2, "fever": 0.25, "one_sided_headache": 0.2}
+    },
+    {
+      "id": "gastritis", "name": "Gastritis", "aliases": ["acute gastritis", "stomach inflammation", "gastropathy"],
+      "category": "Gastrointestinal", "severity": "moderate",
+      "description": "Inflammation of the stomach lining.",
+      "age_groups": ["adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["<1d", "1-3d", "3-7d", "1-4w", ">4w"],
+      "icd11_titles": ["Gastritis", "Acute gastritis"],
+      "nlm_names": ["Gastritis"],
+      "sources": [
+        {"source": "niddk", "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/gastritis-gastropathy/symptoms-causes"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/gastritis.html"}
+      ],
+      "symptoms": {"upper_abdominal_pain": 0.9, "stomach_pain": 0.7, "nausea": 0.7, "vomiting": 0.5, "bloating": 0.5, "indigestion": 0.6, "loss_of_appetite": 0.5},
+      "against": {"diarrhea": 0.15}
+    },
+    {
+      "id": "gerd", "name": "Gastroesophageal Reflux Disease (GERD)", "aliases": ["acid reflux disease", "gerd", "gord", "reflux"],
+      "category": "Gastrointestinal", "severity": "mild",
+      "description": "A condition in which stomach contents frequently flow back into the esophagus.",
+      "age_groups": ["child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["3-7d", "1-4w", ">4w"],
+      "icd11_titles": ["Gastro-oesophageal reflux disease"],
+      "nlm_names": ["Gastroesophageal reflux disease (GERD)", "GERD"],
+      "sources": [
+        {"source": "niddk", "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/acid-reflux-ger-gerd-adults/symptoms-causes"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/gerd.html"}
+      ],
+      "symptoms": {"heartburn": 0.9, "regurgitation": 0.8, "chest_pain": 0.4, "indigestion": 0.5, "upper_abdominal_pain": 0.3, "nausea": 0.3, "painful_swallowing": 0.2, "hoarse_voice": 0.3, "dry_cough": 0.3},
+      "against": {"fever": 0.2}
+    },
+    {
+      "id": "gastroenteritis", "name": "Viral Gastroenteritis (Stomach Flu)", "aliases": ["stomach flu", "stomach bug", "gastroenteritis", "norovirus"],
+      "category": "Gastrointestinal infection", "severity": "moderate",
+      "description": "Inflammation of the stomach and intestines caused by a virus, leading to diarrhea and vomiting.",
+      "age_groups": ["infant", "child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["<1d", "1-3d", "3-7d"],
+      "icd11_titles": ["Infectious gastroenteritis or colitis without specification of infectious agent", "Gastroenteritis or colitis without specification of origin"],
+      "nlm_names": ["Gastroenteritis", "Viral gastroenteritis"],
+      "sources": [
+        {"source": "niddk", "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/viral-gastroenteritis/symptoms-causes"},
+        {"source": "cdc", "url": "https://www.cdc.gov/norovirus/symptoms/index.html"}
+      ],
+      "symptoms": {"diarrhea": 0.9, "vomiting": 0.8, "nausea": 0.7, "abdominal_cramps": 0.7, "stomach_pain": 0.6, "mild_fever": 0.4, "fever": 0.3, "headache": 0.3, "body_pain": 0.3, "dehydration_signs": 0.4},
+      "against": {}
+    },
+    {
+      "id": "food_poisoning", "name": "Food Poisoning (Foodborne Illness)", "aliases": ["food poisoning", "foodborne illness", "food borne disease"],
+      "category": "Gastrointestinal infection", "severity": "moderate",
+      "description": "Illness caused by eating food or drinking water contaminated with germs or toxins.",
+      "age_groups": ["infant", "child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["<1d", "1-3d"],
+      "icd11_titles": ["Foodborne intoxications", "Bacterial foodborne intoxications"],
+      "nlm_names": ["Food poisoning"],
+      "sources": [
+        {"source": "cdc", "url": "https://www.cdc.gov/food-safety/signs-symptoms/index.html"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/foodborneillness.html"}
+      ],
+      "symptoms": {"vomiting": 0.8, "diarrhea": 0.8, "nausea": 0.8, "abdominal_cramps": 0.7, "stomach_pain": 0.6, "fever": 0.4},
+      "against": {}
+    },
+    {
+      "id": "ibs", "name": "Irritable Bowel Syndrome (IBS)", "aliases": ["ibs", "spastic colon", "irritable colon"],
+      "category": "Gastrointestinal", "severity": "mild",
+      "description": "A long-term functional disorder causing abdominal pain together with changes in bowel habits.",
+      "age_groups": ["adolescent", "adult", "older_adult"], "sex_relevance": "female_predominant",
+      "typical_duration": [">4w"],
+      "icd11_titles": ["Irritable bowel syndrome"],
+      "nlm_names": ["Irritable bowel syndrome (IBS)", "Irritable bowel syndrome"],
+      "sources": [
+        {"source": "niddk", "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/irritable-bowel-syndrome/symptoms-causes"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/irritablebowelsyndrome.html"}
+      ],
+      "symptoms": {"stomach_pain": 0.7, "abdominal_cramps": 0.7, "bloating": 0.8, "diarrhea": 0.6, "constipation": 0.6},
+      "against": {"fever": 0.3, "high_fever": 0.3, "black_stools": 0.4, "weight_loss": 0.3, "vomiting_blood": 0.4}
+    },
+    {
+      "id": "appendicitis", "name": "Appendicitis", "aliases": ["acute appendicitis", "inflamed appendix"],
+      "category": "Gastrointestinal (surgical)", "severity": "severe",
+      "description": "Inflammation of the appendix; it is a medical emergency that usually requires surgery.",
+      "age_groups": ["child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["<1d", "1-3d"],
+      "icd11_titles": ["Acute appendicitis"],
+      "nlm_names": ["Appendicitis"],
+      "sources": [
+        {"source": "niddk", "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/appendicitis/symptoms-causes"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/appendicitis.html"}
+      ],
+      "symptoms": {"right_lower_abdominal_pain": 0.95, "stomach_pain": 0.6, "severe_abdominal_pain": 0.6, "nausea": 0.6, "vomiting": 0.6, "loss_of_appetite": 0.6, "fever": 0.5, "mild_fever": 0.4, "constipation": 0.3, "diarrhea": 0.3, "bloating": 0.3},
+      "against": {}
+    },
+    {
+      "id": "hepatitis_a", "name": "Hepatitis A", "aliases": ["hep a", "hav infection", "infectious hepatitis"],
+      "category": "Liver infection", "severity": "moderate",
+      "description": "A contagious liver infection caused by the hepatitis A virus, usually spread through contaminated food or water.",
+      "age_groups": ["child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["3-7d", "1-4w", ">4w"],
+      "icd11_titles": ["Acute hepatitis A"],
+      "nlm_names": ["Hepatitis A"],
+      "sources": [
+        {"source": "cdc", "url": "https://www.cdc.gov/hepatitis-a/signs-symptoms/index.html"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/hepatitisa.html"}
+      ],
+      "symptoms": {"jaundice": 0.9, "dark_urine": 0.8, "clay_colored_stools": 0.8, "fatigue": 0.6, "nausea": 0.6, "vomiting": 0.5, "stomach_pain": 0.5, "loss_of_appetite": 0.6, "fever": 0.5, "joint_pain": 0.3, "diarrhea": 0.3},
+      "against": {}
+    },
+    {
+      "id": "dengue", "name": "Dengue Fever", "aliases": ["dengue", "breakbone fever", "dengue fever"],
+      "category": "Vector-borne infection", "severity": "severe",
+      "description": "A mosquito-borne viral infection common in tropical and subtropical regions.",
+      "age_groups": ["infant", "child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["1-3d", "3-7d"],
+      "icd11_titles": ["Dengue without warning signs", "Dengue fever"],
+      "nlm_names": ["Dengue fever", "Dengue"],
+      "sources": [
+        {"source": "cdc", "url": "https://www.cdc.gov/dengue/signs-symptoms/index.html"},
+        {"source": "who_factsheets", "url": "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue"}
+      ],
+      "symptoms": {"high_fever": 0.9, "fever": 0.8, "severe_headache": 0.7, "headache": 0.6, "eye_pain_behind": 0.8, "muscle_pain": 0.7, "joint_pain": 0.7, "body_pain": 0.6, "rash": 0.6, "nausea": 0.5, "vomiting": 0.5, "swollen_lymph_nodes": 0.4, "fatigue": 0.4},
+      "against": {}
+    },
+    {
+      "id": "malaria", "name": "Malaria", "aliases": ["malaria", "plasmodium infection"],
+      "category": "Vector-borne infection", "severity": "severe",
+      "description": "A mosquito-borne parasitic disease that can become life-threatening if not treated promptly.",
+      "age_groups": ["infant", "child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["1-3d", "3-7d", "1-4w"],
+      "icd11_titles": ["Malaria", "Malaria without parasitological confirmation"],
+      "nlm_names": ["Malaria"],
+      "sources": [
+        {"source": "cdc", "url": "https://www.cdc.gov/malaria/symptoms/index.html"},
+        {"source": "who_factsheets", "url": "https://www.who.int/news-room/fact-sheets/detail/malaria"}
+      ],
+      "symptoms": {"chills_and_sweats_cyclical": 0.9, "fever": 0.8, "high_fever": 0.7, "chills": 0.8, "sweating": 0.6, "headache": 0.6, "body_pain": 0.5, "muscle_pain": 0.5, "nausea": 0.5, "vomiting": 0.5, "fatigue": 0.5, "diarrhea": 0.2},
+      "against": {}
+    },
+    {
+      "id": "typhoid", "name": "Typhoid Fever", "aliases": ["typhoid", "enteric fever"],
+      "category": "Enteric bacterial infection", "severity": "severe",
+      "description": "A bacterial infection caused by Salmonella Typhi, spread through contaminated food and water.",
+      "age_groups": ["child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["3-7d", "1-4w"],
+      "icd11_titles": ["Typhoid fever"],
+      "nlm_names": ["Typhoid fever"],
+      "sources": [
+        {"source": "cdc", "url": "https://www.cdc.gov/typhoid-fever/signs-symptoms/index.html"},
+        {"source": "who_factsheets", "url": "https://www.who.int/news-room/fact-sheets/detail/typhoid"}
+      ],
+      "symptoms": {"fever": 0.8, "high_fever": 0.7, "stomach_pain": 0.6, "headache": 0.6, "fatigue": 0.7, "loss_of_appetite": 0.6, "constipation": 0.4, "diarrhea": 0.4, "body_pain": 0.4, "rash": 0.2},
+      "against": {}
+    },
+    {
+      "id": "tuberculosis", "name": "Tuberculosis (TB)", "aliases": ["tb", "tuberculosis", "pulmonary tuberculosis"],
+      "category": "Respiratory infection", "severity": "severe",
+      "description": "A bacterial infection that usually affects the lungs and causes a long-lasting cough.",
+      "age_groups": ["child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["1-4w", ">4w"],
+      "icd11_titles": ["Tuberculosis of lung", "Respiratory tuberculosis, confirmed", "Tuberculosis"],
+      "nlm_names": ["Tuberculosis", "Tuberculosis (TB)"],
+      "sources": [
+        {"source": "cdc", "url": "https://www.cdc.gov/tb/signs-symptoms/index.html"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/tuberculosis.html"}
+      ],
+      "symptoms": {"cough": 0.7, "productive_cough": 0.5, "coughing_blood": 0.6, "chest_pain": 0.4, "weight_loss": 0.8, "night_sweats": 0.8, "fever": 0.5, "chills": 0.3, "fatigue": 0.6, "loss_of_appetite": 0.5},
+      "against": {}
+    },
+    {
+      "id": "mononucleosis", "name": "Infectious Mononucleosis (Mono)", "aliases": ["mono", "glandular fever", "kissing disease", "ebv infection"],
+      "category": "Viral infection", "severity": "moderate",
+      "description": "A viral illness, usually caused by Epstein-Barr virus, most common in teens and young adults.",
+      "age_groups": ["child", "adolescent", "adult"], "sex_relevance": "any",
+      "typical_duration": ["3-7d", "1-4w", ">4w"],
+      "icd11_titles": ["Infectious mononucleosis", "Gammaherpesviral mononucleosis"],
+      "nlm_names": ["Mononucleosis", "Infectious mononucleosis"],
+      "sources": [
+        {"source": "cdc", "url": "https://www.cdc.gov/epstein-barr/about/mononucleosis.html"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/infectiousmononucleosis.html"}
+      ],
+      "symptoms": {"fatigue": 0.9, "sore_throat": 0.8, "fever": 0.7, "swollen_lymph_nodes": 0.8, "swollen_tonsils": 0.6, "headache": 0.4, "body_pain": 0.4, "rash": 0.2},
+      "against": {}
+    },
+    {
+      "id": "chickenpox", "name": "Chickenpox (Varicella)", "aliases": ["chickenpox", "chicken pox", "varicella"],
+      "category": "Viral infection (rash)", "severity": "moderate",
+      "description": "A highly contagious viral infection causing an itchy, blister-like rash.",
+      "age_groups": ["infant", "child", "adolescent", "adult"], "sex_relevance": "any",
+      "typical_duration": ["1-3d", "3-7d", "1-4w"],
+      "icd11_titles": ["Varicella"],
+      "nlm_names": ["Chickenpox"],
+      "sources": [
+        {"source": "cdc", "url": "https://www.cdc.gov/chickenpox/signs-symptoms/index.html"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/chickenpox.html"}
+      ],
+      "symptoms": {"itchy_rash": 0.95, "rash": 0.7, "fever": 0.5, "mild_fever": 0.4, "fatigue": 0.5, "loss_of_appetite": 0.4, "headache": 0.4},
+      "against": {}
+    },
+    {
+      "id": "measles", "name": "Measles", "aliases": ["measles", "rubeola"],
+      "category": "Viral infection (rash)", "severity": "severe",
+      "description": "A highly contagious viral disease that starts with fever, cough and red eyes, followed by a rash.",
+      "age_groups": ["infant", "child", "adolescent", "adult"], "sex_relevance": "any",
+      "typical_duration": ["1-3d", "3-7d", "1-4w"],
+      "icd11_titles": ["Measles", "Measles without complication"],
+      "nlm_names": ["Measles"],
+      "sources": [
+        {"source": "cdc", "url": "https://www.cdc.gov/measles/signs-symptoms/index.html"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/measles.html"}
+      ],
+      "symptoms": {"high_fever": 0.8, "fever": 0.7, "cough": 0.6, "runny_nose": 0.6, "red_eyes": 0.7, "watery_eyes": 0.4, "rash": 0.8, "koplik_spots": 0.95},
+      "against": {}
+    },
+    {
+      "id": "uti", "name": "Urinary Tract Infection (UTI)", "aliases": ["uti", "bladder infection", "cystitis", "urine infection"],
+      "category": "Genitourinary infection", "severity": "moderate",
+      "description": "An infection in any part of the urinary system, most often the bladder.",
+      "age_groups": ["child", "adolescent", "adult", "older_adult"], "sex_relevance": "female_predominant",
+      "typical_duration": ["<1d", "1-3d", "3-7d"],
+      "icd11_titles": ["Urinary tract infection, site not specified", "Cystitis"],
+      "nlm_names": ["Urinary tract infection", "Urinary tract infection (UTI)"],
+      "sources": [
+        {"source": "cdc", "url": "https://www.cdc.gov/uti/about/index.html"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/urinarytractinfections.html"}
+      ],
+      "symptoms": {"painful_urination": 0.9, "frequent_urination": 0.8, "urgent_urination": 0.8, "cloudy_urine": 0.7, "pelvic_pain": 0.7, "blood_in_urine": 0.4, "mild_fever": 0.2},
+      "against": {}
+    },
+    {
+      "id": "kidney_stones", "name": "Kidney Stones", "aliases": ["renal calculi", "nephrolithiasis", "kidney stone", "urolithiasis"],
+      "category": "Genitourinary", "severity": "moderate",
+      "description": "Hard deposits that form in the kidneys and can cause severe pain as they pass.",
+      "age_groups": ["adolescent", "adult", "older_adult"], "sex_relevance": "male_predominant",
+      "typical_duration": ["<1d", "1-3d", "3-7d"],
+      "icd11_titles": ["Calculus of kidney", "Urolithiasis"],
+      "nlm_names": ["Kidney stones", "Kidney stone"],
+      "sources": [
+        {"source": "niddk", "url": "https://www.niddk.nih.gov/health-information/urologic-diseases/kidney-stones/symptoms-causes"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/kidneystones.html"}
+      ],
+      "symptoms": {"flank_pain": 0.9, "blood_in_urine": 0.7, "painful_urination": 0.5, "nausea": 0.5, "vomiting": 0.5, "back_pain": 0.4, "frequent_urination": 0.3, "cloudy_urine": 0.3, "fever": 0.2},
+      "against": {}
+    },
+    {
+      "id": "iron_deficiency_anemia", "name": "Iron-Deficiency Anemia", "aliases": ["anemia", "anaemia", "iron deficiency", "low iron"],
+      "category": "Blood", "severity": "mild",
+      "description": "A condition in which the body lacks enough iron to make adequate healthy red blood cells.",
+      "age_groups": ["infant", "child", "adolescent", "adult", "older_adult"], "sex_relevance": "female_predominant",
+      "typical_duration": ["1-4w", ">4w"],
+      "icd11_titles": ["Iron deficiency anaemia"],
+      "nlm_names": ["Anemia, iron deficiency", "Iron deficiency anemia"],
+      "sources": [
+        {"source": "nhlbi", "url": "https://www.nhlbi.nih.gov/health/anemia/symptoms"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/anemia.html"}
+      ],
+      "symptoms": {"fatigue": 0.8, "pale_skin": 0.7, "shortness_of_breath": 0.4, "dizziness": 0.5, "lightheadedness": 0.5, "headache": 0.3, "palpitations": 0.4, "cold_intolerance": 0.4},
+      "against": {}
+    },
+    {
+      "id": "hypothyroidism", "name": "Hypothyroidism (Underactive Thyroid)", "aliases": ["underactive thyroid", "low thyroid", "hypothyroid"],
+      "category": "Endocrine", "severity": "mild",
+      "description": "A condition in which the thyroid gland does not make enough thyroid hormone.",
+      "age_groups": ["adolescent", "adult", "older_adult"], "sex_relevance": "female_predominant",
+      "typical_duration": [">4w"],
+      "icd11_titles": ["Hypothyroidism"],
+      "nlm_names": ["Hypothyroidism"],
+      "sources": [
+        {"source": "niddk", "url": "https://www.niddk.nih.gov/health-information/endocrine-diseases/hypothyroidism"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/hypothyroidism.html"}
+      ],
+      "symptoms": {"fatigue": 0.7, "weight_gain": 0.7, "cold_intolerance": 0.8, "constipation": 0.5, "dry_skin": 0.6, "thinning_hair": 0.6, "persistent_sadness": 0.3, "joint_pain": 0.3, "muscle_pain": 0.3, "poor_concentration": 0.3},
+      "against": {}
+    },
+    {
+      "id": "type2_diabetes", "name": "Type 2 Diabetes", "aliases": ["diabetes", "type 2 diabetes", "high blood sugar", "diabetes mellitus"],
+      "category": "Endocrine", "severity": "moderate",
+      "description": "A chronic condition in which the body does not use insulin properly, leading to high blood sugar.",
+      "age_groups": ["adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["1-4w", ">4w"],
+      "icd11_titles": ["Type 2 diabetes mellitus"],
+      "nlm_names": ["Diabetes type 2", "Type 2 diabetes"],
+      "sources": [
+        {"source": "cdc", "url": "https://www.cdc.gov/diabetes/signs-symptoms/index.html"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/diabetestype2.html"}
+      ],
+      "symptoms": {"frequent_urination": 0.8, "excessive_thirst": 0.9, "weight_loss": 0.4, "blurred_vision": 0.5, "fatigue": 0.5, "numbness_tingling": 0.5, "slow_healing_sores": 0.6, "dry_skin": 0.3},
+      "against": {}
+    },
+    {
+      "id": "gad", "name": "Generalized Anxiety Disorder", "aliases": ["gad", "anxiety disorder", "chronic anxiety"],
+      "category": "Mental health", "severity": "moderate",
+      "description": "Persistent and excessive worry about everyday matters that is hard to control.",
+      "age_groups": ["child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": [">4w"],
+      "icd11_titles": ["Generalised anxiety disorder"],
+      "nlm_names": ["Generalized anxiety disorder", "Anxiety disorder, generalized"],
+      "sources": [
+        {"source": "nimh", "url": "https://www.nimh.nih.gov/health/topics/generalized-anxiety-disorder-gad"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/anxiety.html"}
+      ],
+      "symptoms": {"anxiety_worry": 0.95, "restlessness": 0.8, "fatigue": 0.4, "poor_concentration": 0.6, "irritability": 0.6, "muscle_tension": 0.6, "sleep_problems": 0.6, "palpitations": 0.2},
+      "against": {"fever": 0.3}
+    },
+    {
+      "id": "depression", "name": "Depression (Major Depressive Disorder)", "aliases": ["depression", "major depression", "clinical depression", "depressive disorder"],
+      "category": "Mental health", "severity": "moderate",
+      "description": "A common but serious mood disorder affecting how a person feels, thinks and handles daily activities.",
+      "age_groups": ["child", "adolescent", "adult", "older_adult"], "sex_relevance": "any",
+      "typical_duration": ["1-4w", ">4w"],
+      "icd11_titles": ["Single episode depressive disorder", "Recurrent depressive disorder"],
+      "nlm_names": ["Depression", "Major depressive disorder"],
+      "sources": [
+        {"source": "nimh", "url": "https://www.nimh.nih.gov/health/topics/depression"},
+        {"source": "medlineplus", "url": "https://medlineplus.gov/depression.html"}
+      ],
+      "symptoms": {"persistent_sadness": 0.95, "loss_of_interest": 0.9, "fatigue": 0.6, "sleep_problems": 0.6, "poor_concentration": 0.5, "feelings_worthless": 0.7, "irritability": 0.4, "loss_of_appetite": 0.4, "weight_gain": 0.2, "weight_loss": 0.2},
+      "against": {"fever": 0.3}
+    }
+  ]
+}

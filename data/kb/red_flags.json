@@ -1,0 +1,107 @@
+{
+  "_comment": "Red-flag warning patterns. If matched, triggers urgent safety warning overriding normal differential interpretation.",
+  "red_flags": [
+    {
+      "id": "RF-01",
+      "name": "Suspected Stroke / Acute Neurological Deficit",
+      "severity": "emergency",
+      "symptoms": ["face_drooping", "arm_leg_weakness", "speech_difficulty"],
+      "match_mode": "any",
+      "emergency_message": "Immediate emergency attention required (FAST signs detected). Sudden facial drooping, one-sided weakness, or speech impairment may indicate an acute stroke.",
+      "action": "Call emergency services (e.g. 911 / 999 / 112) immediately. Do not drive yourself.",
+      "source": "cdc",
+      "source_url": "https://www.cdc.gov/stroke/signs-symptoms/index.html"
+    },
+    {
+      "id": "RF-02",
+      "name": "Suspected Acute Coronary Syndrome (Heart Attack)",
+      "severity": "emergency",
+      "symptoms": ["chest_pain_radiating", "cold_sweat"],
+      "conditions": [
+        {"any": ["chest_pain_radiating"]},
+        {"all": ["chest_pain", "cold_sweat"]},
+        {"all": ["chest_pain", "shortness_of_breath"]}
+      ],
+      "match_mode": "condition_group",
+      "emergency_message": "Possible acute cardiac event. Chest discomfort radiating to jaw, neck, back, or arm, especially with breathlessness or cold sweats, requires immediate evaluation.",
+      "action": "Call emergency medical services immediately. Rest quietly while awaiting help.",
+      "source": "nhlbi",
+      "source_url": "https://www.nhlbi.nih.gov/health/heart-attack/symptoms"
+    },
+    {
+      "id": "RF-03",
+      "name": "Severe Respiratory Distress / Hypoxemia",
+      "severity": "emergency",
+      "symptoms": ["severe_breathing_difficulty", "bluish_lips"],
+      "match_mode": "any",
+      "emergency_message": "Severe breathing difficulty, struggle to speak, or cyanosis (bluish lips/face) indicates critical respiratory compromise.",
+      "action": "Seek immediate emergency medical care or call an ambulance immediately.",
+      "source": "medlineplus",
+      "source_url": "https://medlineplus.gov/breathingproblems.html"
+    },
+    {
+      "id": "RF-04",
+      "name": "Meningeal Irritation / Central Nervous System Infection",
+      "severity": "emergency",
+      "symptoms": ["stiff_neck", "high_fever", "confusion"],
+      "conditions": [
+        {"all": ["stiff_neck", "high_fever"]},
+        {"all": ["stiff_neck", "confusion"]},
+        {"all": ["stiff_neck", "severe_headache", "light_sensitivity"]}
+      ],
+      "match_mode": "condition_group",
+      "emergency_message": "Combination of stiff neck with fever, confusion, or severe photophobia may indicate acute meningitis.",
+      "action": "Go to the nearest emergency department immediately for urgent clinical examination.",
+      "source": "cdc",
+      "source_url": "https://www.cdc.gov/meningitis/signs-symptoms/index.html"
+    },
+    {
+      "id": "RF-05",
+      "name": "Thunderclap Headache (Intracranial Hemorrhage)",
+      "severity": "emergency",
+      "symptoms": ["thunderclap_headache"],
+      "match_mode": "any",
+      "emergency_message": "Sudden, excruciating 'worst headache of life' peaking in seconds may suggest subarachnoid hemorrhage.",
+      "action": "Seek immediate emergency room evaluation. Do not delay.",
+      "source": "ninds",
+      "source_url": "https://www.ninds.nih.gov/health-information/disorders/headache"
+    },
+    {
+      "id": "RF-06",
+      "name": "Gastrointestinal Bleeding",
+      "severity": "urgent",
+      "symptoms": ["vomiting_blood", "black_stools"],
+      "match_mode": "any",
+      "emergency_message": "Vomiting blood (hematemesis) or black/tarry stools indicates potential active internal gastrointestinal bleeding.",
+      "action": "Proceed to an emergency room or urgent clinical care immediately.",
+      "source": "medlineplus",
+      "source_url": "https://medlineplus.gov/gastrointestinalbleeding.html"
+    },
+    {
+      "id": "RF-07",
+      "name": "Suspected Acute Surgical Abdomen (e.g. Appendicitis/Peritonitis)",
+      "severity": "urgent",
+      "symptoms": ["right_lower_abdominal_pain", "severe_abdominal_pain"],
+      "conditions": [
+        {"all": ["right_lower_abdominal_pain", "fever"]},
+        {"all": ["severe_abdominal_pain", "persistent_vomiting"]}
+      ],
+      "match_mode": "condition_group",
+      "emergency_message": "Severe localized abdominal pain with fever or persistent vomiting may signify an acute surgical condition requiring immediate physician assessment.",
+      "action": "Seek urgent medical care without taking strong laxatives or pain relievers that may mask findings.",
+      "source": "niddk",
+      "source_url": "https://www.niddk.nih.gov/health-information/digestive-diseases/appendicitis/symptoms-causes"
+    },
+    {
+      "id": "RF-08",
+      "name": "Imminent Psychiatric Crisis / Suicidal Ideation",
+      "severity": "emergency",
+      "symptoms": ["suicidal_thoughts"],
+      "match_mode": "any",
+      "emergency_message": "Suicidal ideation or self-harm thoughts represent an acute mental health crisis.",
+      "action": "Contact 988 Suicide & Crisis Lifeline (US/Canada), 111 (UK), or your local crisis helpline / emergency department immediately. You are not alone.",
+      "source": "nimh",
+      "source_url": "https://www.nimh.nih.gov/health/topics/suicide-prevention"
+    }
+  ]
+}

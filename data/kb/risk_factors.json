@@ -1,0 +1,20 @@
+{
+  "_comment": "Risk factors and age/sex modifiers for disease scoring",
+  "risk_factors": [
+    {"id": "smoking", "name": "History of Tobacco Smoking", "category": "Lifestyle", "description": "Active or past significant tobacco cigarette smoking"},
+    {"id": "diabetes_history", "name": "History of Diabetes Mellitus", "category": "Medical History", "description": "Diagnosed Type 1 or Type 2 Diabetes"},
+    {"id": "hypertension", "name": "Hypertension (High Blood Pressure)", "category": "Medical History", "description": "Diagnosed high blood pressure"},
+    {"id": "asthma_history", "name": "Known History of Asthma", "category": "Medical History", "description": "Prior clinical diagnosis of reactive airway or asthma"},
+    {"id": "tropical_travel", "name": "Recent Travel to Tropical/Endemic Region", "category": "Epidemiological", "description": "Travel to mosquito-endemic areas within last 14 days"},
+    {"id": "sick_contact", "name": "Close Contact with Confirmed Sick Individual", "category": "Exposure", "description": "Exposure to someone with acute respiratory or viral illness"},
+    {"id": "recent_antibiotics", "name": "Recent Antibiotic Use", "category": "Medication", "description": "Antibiotic regimen completed within last 30 days"}
+  ],
+  "disease_risk_associations": [
+    {"disease_id": "copd", "risk_factor_id": "smoking", "weight": 0.25, "source": "nhlbi"},
+    {"disease_id": "asthma", "risk_factor_id": "asthma_history", "weight": 0.30, "source": "nhlbi"},
+    {"disease_id": "dengue", "risk_factor_id": "tropical_travel", "weight": 0.35, "source": "cdc"},
+    {"disease_id": "malaria", "risk_factor_id": "tropical_travel", "weight": 0.35, "source": "cdc"},
+    {"disease_id": "influenza", "risk_factor_id": "sick_contact", "weight": 0.15, "source": "cdc"},
+    {"disease_id": "covid19", "risk_factor_id": "sick_contact", "weight": 0.15, "source": "cdc"}
+  ]
+}

@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedExpert - Intelligent Medical Expert System</title>
+  <meta name="description" content="A Rule-Based Expert System for Preliminary Disease Diagnosis using Forward-Chaining Inference.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- GLOBAL TOP NAVIGATION BAR -->
+  <header class="top-navbar">
+    <a href="#" class="brand-logo" id="btn-brand-home">
+      <div class="brand-icon-box">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+          <path d="M12 5v4"></path>
+          <path d="M10 7h4"></path>
+        </svg>
+      </div>
+      <div class="brand-name">Med<span>Expert</span></div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#" id="btn-nav-home">Home</a></li>
+      <li><a href="#about" onclick="alert('MedExpert is a forward-chaining clinical decision support system utilizing production rules for diagnostic estimation.'); return false;">About</a></li>
+      <li><a href="#how-it-works" onclick="alert('How It Works:\n1. Collects patient symptoms & history\n2. Fires production rules (IF-THEN)\n3. Calculates weighted confidence scores\n4. Provides an explainable audit trace.'); return false;">How it works</a></li>
+      <li><a href="#disclaimer" onclick="alert('Disclaimer: This tool is for educational & preliminary screening purposes only, not a substitute for clinical physician diagnosis.'); return false;">Disclaimer</a></li>
+    </ul>
+
+    <button class="btn-get-started" id="btn-landing-get-started">Get Started</button>
+  </header>
+
+  <!-- ==============================================================================
+       SCREEN 1: LANDING PAGE
+       ============================================================================== -->
+  <main id="view-landing" class="landing-view">
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="pill-badge">
+          <span class="pill-dot"></span>
+          Rule-Based Expert System
+        </div>
+        <h1 class="hero-title">Intelligent Medical<br>Expert System</h1>
+        <h2 class="hero-subtitle">A Rule-Based System for Preliminary Disease Diagnosis</h2>
+        <p class="hero-description">
+          Enter your symptoms and get a preliminary assessment using an expert system based on medical rules.
+        </p>
+        <button class="btn-start-hero" id="btn-hero-start">
+          Start Assessment
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <div class="hero-media-wrapper">
+        <img src="assets/doctor_hero.jpg" alt="MedExpert Clinical Professional Doctor" class="hero-doctor-img">
+        
+        <div class="hero-floating-card floating-card-1">
+          <div style="background: #e0f2fe; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #0284c7;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          </div>
+          <div>
+            <div style="font-size: 11px; color: #64748b; font-weight: 600;">ACTIVE INFERENCE</div>
+            <div style="font-size: 13px; font-weight: 700; color: #0f172a;">Forward Chaining</div>
+          </div>
+        </div>
+
+        <div class="hero-floating-card floating-card-2">
+          <div style="background: #ecfdf5; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #059669;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <div>
+            <div style="font-size: 11px; color: #64748b; font-weight: 600;">REASONING ENGINE</div>
+            <div style="font-size: 13px; font-weight: 700; color: #0f172a;">100% Explainable</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 Bottom Feature Cards -->
+    <section class="hero-features-grid">
+      <div class="feature-card">
+        <div class="feature-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+        </div>
+        <h3 class="feature-title">Symptom Analysis</h3>
+        <p class="feature-desc">Select your symptoms easily from categorized anatomical lists.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </div>
+        <h3 class="feature-title">Rule-Based Reasoning</h3>
+        <p class="feature-desc">Uses verified medical production rules (IF-THEN) and specificity weights.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        </div>
+        <h3 class="feature-title">Preliminary Diagnosis</h3>
+        <p class="feature-desc">Get ranked differential conditions with weighted certainty percentages.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </div>
+        <h3 class="feature-title">Explainable Results</h3>
+        <p class="feature-desc">See transparently how the expert system deduced each finding step-by-step.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==============================================================================
+       APP WORKSPACE (SIDEBAR + SUB-VIEWS 2 TO 9)
+       ============================================================================== -->
+  <div id="view-app-workspace" class="app-container" style="display: none;">
+    <!-- LEFT SIDEBAR -->
+    <aside class="app-sidebar">
+      <button class="btn-sidebar-new" id="btn-sidebar-new">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        New Assessment
+      </button>
+
+      <ul class="sidebar-nav-list">
+        <li>
+          <a class="sidebar-nav-item" id="btn-nav-assessment-item" data-nav="nav-assessment" onclick="switchView('wizard-' + AppState.wizardStep)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+            Assessment
+          </a>
+        </li>
+        <li>
+          <a class="sidebar-nav-item active" id="btn-nav-dashboard" data-nav="nav-dashboard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a class="sidebar-nav-item" id="btn-nav-history" data-nav="nav-history">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            History
+          </a>
+        </li>
+        <li>
+          <a class="sidebar-nav-item" id="btn-nav-kb" data-nav="nav-kb">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            Knowledge Base
+          </a>
+        </li>
+        <li>
+          <a class="sidebar-nav-item" id="btn-nav-rules" data-nav="nav-rules">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            Rules
+          </a>
+        </li>
+        <li>
+          <a class="sidebar-nav-item" onclick="alert('Analytics: 94.2% diagnostic rule concordance over 124 benchmarked cases.');">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            Analytics
+          </a>
+        </li>
+        <li>
+          <a class="sidebar-nav-item" onclick="alert('System Settings: Forward-Chaining v3.2 Engine • Strict Weight Thresholding Enabled.');">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            Settings
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- RIGHT MAIN WORKSPACE -->
+    <section class="app-main-content">
+      <!-- WIZARD STEPPER (VISIBLE DURING ASSESSMENT) -->
+      <div id="wizard-stepper-bar" class="wizard-stepper-container" style="display: none;">
+        <div class="wizard-connector-line">
+          <div id="wizard-connector-fill" class="wizard-connector-fill"></div>
+        </div>
+
+        <div class="wizard-step-item active" data-step="1">
+          <div class="step-circle">1</div>
+          <div class="step-title">Patient Info</div>
+        </div>
+        <div class="wizard-step-item" data-step="2">
+          <div class="step-circle">2</div>
+          <div class="step-title">Symptoms</div>
+        </div>
+        <div class="wizard-step-item" data-step="3">
+          <div class="step-circle">3</div>
+          <div class="step-title">Clinical Questions</div>
+        </div>
+        <div class="wizard-step-item" data-step="4">
+          <div class="step-circle">4</div>
+          <div class="step-title">Results</div>
+        </div>
+      </div>
+
+      <!-- ==============================================================================
+           SCREEN 2: PATIENT INFORMATION FORM
+           ============================================================================== -->
+      <div id="subview-wizard-1" style="display: none;">
+        <div class="wizard-card">
+          <div class="card-header-block">
+            <h2 class="card-header-title">Patient Information</h2>
+            <p class="card-header-desc">Please provide some basic information to help with the assessment.</p>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="input-patient-id">
+                Patient ID
+                <span class="optional-tag">[Optional]</span>
+              </label>
+              <input type="text" id="input-patient-id" class="form-input" placeholder="e.g. P-1024" value="P-1024">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="input-patient-age">Age *</label>
+              <input type="number" id="input-patient-age" class="form-input" placeholder="20" value="20" min="1" max="120">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Gender *</label>
+            <div class="gender-radio-group">
+              <div class="gender-pill-label selected" data-gender="Male">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="14" r="5"></circle><line x1="19" y1="5" x2="13.6" y2="10.4"></line><line x1="19" y1="5" x2="14" y2="5"></line><line x1="19" y1="5" x2="19" y2="10"></line></svg>
+                Male
+              </div>
+              <div class="gender-pill-label" data-gender="Female">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="9" r="5"></circle><line x1="12" y1="14" x2="12" y2="21"></line><line x1="9" y1="18" x2="15" y2="18"></line></svg>
+                Female
+              </div>
+              <div class="gender-pill-label" data-gender="Other">
+                Other
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="input-patient-conditions">Existing Medical Conditions</label>
+            <input type="text" id="input-patient-conditions" class="form-input" placeholder="e.g. Diabetes, Hypertension, Asthma">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="input-patient-allergies">Known Allergies</label>
+            <input type="text" id="input-patient-allergies" class="form-input" placeholder="e.g. Penicillin, Dust, Food allergies">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="input-patient-meds">
+              Current Medications
+              <span class="optional-tag">(Optional)</span>
+            </label>
+            <input type="text" id="input-patient-meds" class="form-input" placeholder="e.g. Paracetamol, Insulin">
+          </div>
+
+          <div class="wizard-footer-actions">
+            <div></div>
+            <button class="btn-primary" id="btn-step1-next">
+              Next: Select Symptoms
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================================================
+           SCREEN 3: SYMPTOM SELECTION
+           ============================================================================== -->
+      <div id="subview-wizard-2" style="display: none;">
+        <div class="wizard-card" style="max-width: 1040px;">
+          <div class="card-header-block">
+            <h2 class="card-header-title">What symptoms are you experiencing?</h2>
+            <p class="card-header-desc">Search or browse symptoms to select all that apply.</p>
+          </div>
+
+          <!-- Search Bar -->
+          <div class="symptom-search-bar">
+            <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="input-symptom-search" class="symptom-search-input" placeholder="Search symptoms (e.g. fever, cough, headache...)">
+          </div>
+
+          <!-- Category Filter Tabs -->
+          <div class="category-filter-tabs">
+            <button class="category-tab-btn active" data-cat="All">All</button>
+            <button class="category-tab-btn" data-cat="General">General</button>
+            <button class="category-tab-btn" data-cat="Respiratory">Respiratory</button>
+            <button class="category-tab-btn" data-cat="ENT">ENT</button>
+            <button class="category-tab-btn" data-cat="Cardiovascular">Cardiovascular</button>
+            <button class="category-tab-btn" data-cat="Gastrointestinal">Gastrointestinal</button>
+            <button class="category-tab-btn" data-cat="Neurological">Neurological</button>
+            <button class="category-tab-btn" data-cat="Musculoskeletal">Musculoskeletal</button>
+            <button class="category-tab-btn" data-cat="Dermatological">Dermatological</button>
+            <button class="category-tab-btn" data-cat="Genitourinary">Genitourinary</button>
+            <button class="category-tab-btn" data-cat="Ophthalmic">Ophthalmic</button>
+            <button class="category-tab-btn" data-cat="Mental/behavioral">Mental/Behavioral</button>
+            <button class="category-tab-btn" data-cat="Infectious">Infectious</button>
+          </div>
+
+          <!-- Grid of Symptom Cards -->
+          <div class="symptom-cards-grid" id="symptom-cards-container">
+            <!-- Dynamically populated by app.js -->
+          </div>
+
+          <!-- Selected Symptoms Pill Tray -->
+          <div class="selected-symptom-tray">
+            <div class="tray-header-label" id="selected-symptoms-count">Selected Symptoms (3)</div>
+            <div class="tray-pills-list" id="selected-pills-container">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <div class="wizard-footer-actions">
+            <button class="btn-secondary" id="btn-step2-back">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              Back
+            </button>
+            <button class="btn-primary" id="btn-step2-next">
+              Next: Clinical Questions
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================================================
+           SCREEN 4: CLINICAL QUESTIONS
+           ============================================================================== -->
+      <div id="subview-wizard-3" style="display: none;">
+        <div class="wizard-card" style="max-width: 900px;">
+          <div class="card-header-block">
+            <h2 class="card-header-title">Clinical Questions</h2>
+            <p class="card-header-desc">Please answer the following questions to help the expert system analyze your condition.</p>
+          </div>
+
+          <!-- Question 1: Fever Severity -->
+          <div class="question-card-block">
+            <div class="question-title-row">
+              <span class="question-text">1. How severe is your fever?</span>
+              <div class="question-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path></svg>
+              </div>
+            </div>
+
+            <div class="options-radio-list">
+              <div class="option-radio-item" data-q="fever-sev" data-val="mild">
+                <div class="radio-circle"><div class="radio-circle-dot"></div></div>
+                <span>Mild (37.5&deg;C &ndash; 38&deg;C)</span>
+              </div>
+              <div class="option-radio-item" data-q="fever-sev" data-val="moderate">
+                <div class="radio-circle"><div class="radio-circle-dot"></div></div>
+                <span>Moderate (38&deg;C &ndash; 39&deg;C)</span>
+              </div>
+              <div class="option-radio-item selected" data-q="fever-sev" data-val="high">
+                <div class="radio-circle"><div class="radio-circle-dot"></div></div>
+                <span>High (&gt; 39&deg;C)</span>
+              </div>
+            </div>
+
+            <div class="question-rule-hint">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Your answer helps in applying the correct medical rules.
+            </div>
+          </div>
+
+          <!-- Question 2: Duration -->
+          <div class="question-card-block">
+            <div class="question-title-row">
+              <span class="question-text">2. How long have you had the symptoms?</span>
+              <div class="question-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              </div>
+            </div>
+
+            <div class="options-radio-list">
+              <div class="option-radio-item" data-q="duration" data-val="< 1 day">
+                <div class="radio-circle"><div class="radio-circle-dot"></div></div>
+                <span>&lt; 1 day</span>
+              </div>
+              <div class="option-radio-item selected" data-q="duration" data-val="1 - 3 days">
+                <div class="radio-circle"><div class="radio-circle-dot"></div></div>
+                <span>1 &ndash; 3 days</span>
+              </div>
+              <div class="option-radio-item" data-q="duration" data-val="3 - 7 days">
+                <div class="radio-circle"><div class="radio-circle-dot"></div></div>
+                <span>3 &ndash; 7 days</span>
+              </div>
+              <div class="option-radio-item" data-q="duration" data-val="> 7 days">
+                <div class="radio-circle"><div class="radio-circle-dot"></div></div>
+                <span>&gt; 7 days</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="wizard-footer-actions">
+            <button class="btn-secondary" id="btn-step3-back">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              Back
+            </button>
+            <button class="btn-primary" id="btn-step3-next">
+              Next: Analyze Symptoms
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================================================
+           SCREEN 5: ANALYSIS PROCESSING ANIMATION
+           ============================================================================== -->
+      <div id="subview-wizard-processing" style="display: none;">
+        <div class="wizard-card processing-card">
+          <div class="radar-spinner-wrapper">
+            <div class="radar-ring"></div>
+            <div class="radar-ring-inner"></div>
+            <div class="radar-icon-center">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a5 5 0 0 1 5 5c0 1.95-1.12 3.65-2.76 4.49A3.5 3.5 0 0 0 13 14.5V16h-2v-1.5a3.5 3.5 0 0 0-1.24-2.73C8.12 10.65 7 8.95 7 7a5 5 0 0 1 5-5z"></path><path d="M9 19h6"></path><path d="M10 22h4"></path></svg>
+            </div>
+          </div>
+
+          <h2 class="processing-heading">Analyzing Your Symptoms</h2>
+
+          <div class="processing-checklist">
+            <div class="check-item" id="proc-check-1">
+              <div class="check-badge">&bull;</div>
+              <span>Symptoms collected</span>
+            </div>
+            <div class="check-item" id="proc-check-2">
+              <div class="check-badge">&bull;</div>
+              <span>Patient factors evaluated</span>
+            </div>
+            <div class="check-item" id="proc-check-3">
+              <div class="check-badge">&bull;</div>
+              <span>Medical rules being processed</span>
+            </div>
+            <div class="check-item" id="proc-check-4">
+              <div class="check-badge">&bull;</div>
+              <span>Calculating possible conditions...</span>
+            </div>
+          </div>
+
+          <p class="processing-sub-note">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px; color: var(--primary);"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            Our expert system is analyzing your symptoms using medical knowledge and diagnostic rules.
+          </p>
+        </div>
+      </div>
+
+      <!-- ==============================================================================
+           SCREEN 6: DIAGNOSIS RESULTS
+           ============================================================================== -->
+      <div id="subview-wizard-4" style="display: none;">
+        <div style="max-width: 1040px; margin: 0 auto;">
+          <div class="results-header-bar">
+            <div>
+              <h2 class="results-heading">Preliminary Assessment</h2>
+              <div class="results-timestamp" id="results-timestamp">Generated on 08 Oct 2026, 12:45 PM</div>
+            </div>
+          </div>
+
+          <!-- Red Flag Emergency Alert Container (Hidden unless safety check triggers) -->
+          <div id="red-flag-alert-banner" class="disclaimer-alert-card" style="display: none; background: #fef2f2; border: 2px solid #ef4444; margin-bottom: 24px; padding: 20px;">
+            <div class="disclaimer-title" style="color: #b91c1c; font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              <span>&#9888; Urgent Medical Attention Required</span>
+            </div>
+            <div id="red-flag-details-body" style="color: #991b1b; font-size: 14.5px; margin-top: 10px; line-height: 1.6;">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Top Results Grid -->
+          <div class="results-top-grid">
+            <!-- Lead Condition Card -->
+            <div class="lead-condition-card">
+              <div class="lead-condition-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Most Likely Condition
+              </div>
+              <h3 class="lead-condition-name" id="lead-condition-name">Influenza (Flu)</h3>
+              <div class="lead-condition-cat" id="lead-condition-cat">Systemic Viral Infection</div>
+
+              <div class="confidence-meter-block">
+                <div class="confidence-header-row">
+                  <span style="font-size: 14px; font-weight: 700; color: #1e293b;">Confidence:</span>
+                  <span class="confidence-val-text" id="confidence-val-text">82%</span>
+                </div>
+                <div class="confidence-bar-track">
+                  <div class="confidence-bar-fill" id="confidence-bar-fill" style="width: 82%;"></div>
+                </div>
+              </div>
+
+              <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 8px;">
+                Rest, hydration, and early antiviral medication if evaluated promptly. Seek emergency care if dyspnea occurs.
+              </p>
+            </div>
+
+            <!-- Other Possible Conditions -->
+            <div class="differentials-card">
+              <h4 class="diff-card-title">Other Possible Conditions</h4>
+              <div class="diff-items-list" id="differentials-list-container">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Results Grid -->
+          <div class="results-bottom-grid">
+            <!-- Supporting Findings Table -->
+            <div class="findings-card">
+              <h4 style="font-size: 15px; font-weight: 700; color: #0f172a; margin-bottom: 14px;">Supporting Findings</h4>
+              <table class="findings-table">
+                <thead>
+                  <tr>
+                    <th>Symptom / Finding</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="findings-table-body">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Disclaimer Card -->
+            <div class="disclaimer-alert-card">
+              <div class="disclaimer-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                Important Disclaimer
+              </div>
+              <p class="disclaimer-body">
+                This is a preliminary assessment based on a rule-based expert system and does not constitute a definitive medical diagnosis. Please consult a qualified healthcare professional for proper medical advice, diagnosis, and treatment.
+              </p>
+            </div>
+          </div>
+
+          <!-- Results Actions -->
+          <div class="wizard-footer-actions">
+            <button class="btn-secondary" id="btn-step4-back">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              Back
+            </button>
+            <button class="btn-primary" id="btn-step4-reasoning">
+              View Detailed Reasoning
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================================================
+           SCREEN 7: EXPLANATION OF REASONING
+           ============================================================================== -->
+      <div id="subview-reasoning" style="display: none;">
+        <div style="max-width: 1040px; margin: 0 auto;">
+          <div class="results-header-bar">
+            <div>
+              <h2 class="results-heading">Why This Result?</h2>
+              <div class="results-timestamp">Step-by-step explanation of how the expert system reached this conclusion.</div>
+            </div>
+            <button class="btn-secondary" id="btn-reasoning-print">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+              Print Report
+            </button>
+          </div>
+
+          <div class="reasoning-grid">
+            <!-- Left: Rule Matching -->
+            <div class="rule-matching-card">
+              <h3 style="font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 18px;">Rule Matching</h3>
+              <div id="reasoning-rules-container">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <!-- Right: Inference Flow -->
+            <div class="inference-flow-card">
+              <h3 style="font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 22px; width: 100%;">Inference Flow</h3>
+              <div id="inference-flow-diagram" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+
+          <div class="wizard-footer-actions">
+            <button class="btn-secondary" id="btn-reasoning-back">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              Back to Results
+            </button>
+            <button class="btn-primary" onclick="startNewAssessment()">
+              Start Another Assessment
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================================================
+           SCREEN 8: DASHBOARD & RECENT ASSESSMENTS
+           ============================================================================== -->
+      <div id="subview-dashboard" style="display: none;">
+        <div style="max-width: 1080px; margin: 0 auto;">
+          <div class="card-header-block">
+            <h2 class="card-header-title">Dashboard</h2>
+            <p class="card-header-desc">Overview of assessments and system statistics.</p>
+          </div>
+
+          <!-- 4 Stats Metric Cards -->
+          <div class="stats-cards-grid">
+            <div class="stat-metric-card">
+              <div class="stat-icon-wrapper stat-icon-1">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+              </div>
+              <div>
+                <div class="stat-val" id="stat-total-assessments">124</div>
+                <div class="stat-label">Total Assessments</div>
+              </div>
+            </div>
+
+            <div class="stat-metric-card">
+              <div class="stat-icon-wrapper stat-icon-2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              </div>
+              <div>
+                <div class="stat-val" id="stat-kb-diseases">18</div>
+                <div class="stat-label">Diseases in KB</div>
+              </div>
+            </div>
+
+            <div class="stat-metric-card">
+              <div class="stat-icon-wrapper stat-icon-3">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              </div>
+              <div>
+                <div class="stat-val" id="stat-total-rules">86</div>
+                <div class="stat-label">Rules Defined</div>
+              </div>
+            </div>
+
+            <div class="stat-metric-card">
+              <div class="stat-icon-wrapper stat-icon-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              </div>
+              <div>
+                <div class="stat-val">94.2%</div>
+                <div class="stat-label">System Concordance</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Assessments Table -->
+          <div class="history-table-card">
+            <h3 style="font-size: 17px; font-weight: 700; color: #0f172a; margin-bottom: 18px;">Recent Assessments</h3>
+            <table class="data-table-standard">
+              <thead>
+                <tr>
+                  <th>Patient ID</th>
+                  <th>Age / Gender</th>
+                  <th>Symptoms</th>
+                  <th>Result</th>
+                  <th>Confidence</th>
+                  <th>Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="dashboard-history-body">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================================================
+           SCREEN 9: KNOWLEDGE BASE / RULES MANAGER
+           ============================================================================== -->
+      <div id="subview-kb" style="display: none;">
+        <div style="max-width: 1080px; margin: 0 auto;">
+          <div class="results-header-bar">
+            <div>
+              <h2 class="results-heading">Disease Knowledge Base</h2>
+              <div class="results-timestamp">List of diseases, associated symptoms, and forward-chaining production rules.</div>
+            </div>
+            <button class="btn-primary" onclick="alert('Feature Demo: Add Disease modal available. New rules can also be loaded directly from knowledge base JSON.');">
+              + Add Disease
+            </button>
+          </div>
+
+          <div class="kb-sub-tabs-bar">
+            <button class="kb-sub-tab-btn" onclick="alert('Viewing 24 active symptoms in knowledge base.');">Symptoms</button>
+            <button class="kb-sub-tab-btn active">Diseases</button>
+            <button class="kb-sub-tab-btn" onclick="switchView('reasoning')">Rules</button>
+          </div>
+
+          <div class="history-table-card">
+            <table class="data-table-standard">
+              <thead>
+                <tr>
+                  <th style="width: 180px;">Disease</th>
+                  <th style="width: 280px;">Description</th>
+                  <th>Common Symptoms</th>
+                  <th style="width: 160px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="kb-diseases-table-body">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- CORE SCRIPTS -->
+  <script src="js/kb-data.js"></script>
+  <script src="js/expert-engine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

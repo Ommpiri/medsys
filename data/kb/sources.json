@@ -1,0 +1,110 @@
+[
+  {
+    "id": "nlm_ct_conditions",
+    "name": "NLM Clinical Tables - Medical Conditions",
+    "url": "https://clinicaltables.nlm.nih.gov/apidoc/conditions/v3/doc.html",
+    "publisher": "U.S. National Library of Medicine",
+    "kind": "terminology",
+    "license_note": "Public API provided by NLM. Condition list with ICD-10-CM mappings, synonyms and MedlinePlus links.",
+    "integration": "imported"
+  },
+  {
+    "id": "nlm_ct_icd11",
+    "name": "WHO ICD-11 (via NLM Clinical Tables ICD-11 API)",
+    "url": "https://clinicaltables.nlm.nih.gov/apidoc/icd11_codes/v3/doc.html",
+    "publisher": "World Health Organization / U.S. National Library of Medicine",
+    "kind": "terminology",
+    "license_note": "ICD-11 content (c) WHO, licensed CC BY-ND 3.0 IGO. Codes and titles are stored unmodified.",
+    "integration": "imported"
+  },
+  {
+    "id": "medlineplus",
+    "name": "MedlinePlus",
+    "url": "https://medlineplus.gov/",
+    "publisher": "U.S. National Library of Medicine",
+    "kind": "patient_information",
+    "license_note": "Linked as reference only. Page text is not copied into the knowledge base.",
+    "integration": "referenced"
+  },
+  {
+    "id": "cdc",
+    "name": "U.S. Centers for Disease Control and Prevention",
+    "url": "https://www.cdc.gov/",
+    "publisher": "CDC",
+    "kind": "clinical_reference",
+    "license_note": "Linked as reference only.",
+    "integration": "referenced"
+  },
+  {
+    "id": "who_factsheets",
+    "name": "WHO Fact Sheets",
+    "url": "https://www.who.int/news-room/fact-sheets",
+    "publisher": "World Health Organization",
+    "kind": "clinical_reference",
+    "license_note": "Linked as reference only.",
+    "integration": "referenced"
+  },
+  {
+    "id": "niddk",
+    "name": "NIH - National Institute of Diabetes and Digestive and Kidney Diseases",
+    "url": "https://www.niddk.nih.gov/health-information",
+    "publisher": "NIH / NIDDK",
+    "kind": "clinical_reference",
+    "license_note": "Linked as reference only.",
+    "integration": "referenced"
+  },
+  {
+    "id": "nhlbi",
+    "name": "NIH - National Heart, Lung, and Blood Institute",
+    "url": "https://www.nhlbi.nih.gov/health",
+    "publisher": "NIH / NHLBI",
+    "kind": "clinical_reference",
+    "license_note": "Linked as reference only.",
+    "integration": "referenced"
+  },
+  {
+    "id": "nimh",
+    "name": "NIH - National Institute of Mental Health",
+    "url": "https://www.nimh.nih.gov/health/topics",
+    "publisher": "NIH / NIMH",
+    "kind": "clinical_reference",
+    "license_note": "Linked as reference only.",
+    "integration": "referenced"
+  },
+  {
+    "id": "ninds",
+    "name": "NIH - National Institute of Neurological Disorders and Stroke",
+    "url": "https://www.ninds.nih.gov/health-information/disorders",
+    "publisher": "NIH / NINDS",
+    "kind": "clinical_reference",
+    "license_note": "Linked as reference only.",
+    "integration": "referenced"
+  },
+  {
+    "id": "medexpert_curated",
+    "name": "MedExpert curation (heuristic weights)",
+    "url": "",
+    "publisher": "MedExpert project",
+    "kind": "curation",
+    "license_note": "Association strengths, rule weights and rule structure are curator-assigned heuristics. They are NOT derived from published likelihood ratios and are flagged as such.",
+    "integration": "internal"
+  },
+  {
+    "id": "snomed_ct",
+    "name": "SNOMED CT",
+    "url": "https://www.snomed.org/",
+    "publisher": "SNOMED International",
+    "kind": "terminology",
+    "license_note": "Requires an affiliate/national licence. NOT integrated. Schema provides snomed_code columns for future use.",
+    "integration": "not_integrated"
+  },
+  {
+    "id": "mimic_iv_ext_cds",
+    "name": "MIMIC-IV-Ext CDS",
+    "url": "https://physionet.org/",
+    "publisher": "PhysioNet",
+    "kind": "research_dataset",
+    "license_note": "Credentialed access required. NOT used by the production system or by the bundled evaluation.",
+    "integration": "not_integrated"
+  }
+]

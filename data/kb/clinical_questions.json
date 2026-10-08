@@ -1,0 +1,56 @@
+{
+  "_comment": "Clinical follow-up questions tailored to reported symptoms, duration, and patient parameters.",
+  "clinical_questions": [
+    {
+      "id": "CQ-01",
+      "question": "How severe is your fever?",
+      "symptom_trigger": "fever",
+      "answer_type": "single_choice",
+      "options": [
+        {"id": "none", "label": "No fever (< 37.5°C / 99.5°F)", "maps_to_symptoms": [], "removes_symptoms": ["fever", "high_fever", "mild_fever"]},
+        {"id": "mild", "label": "Mild (37.5°C – 38.0°C / 99.5°F – 100.4°F)", "maps_to_symptoms": ["mild_fever", "fever"], "removes_symptoms": ["high_fever"]},
+        {"id": "moderate", "label": "Moderate (38.0°C – 39.0°C / 100.4°F – 102.2°F)", "maps_to_symptoms": ["fever"], "removes_symptoms": ["high_fever", "mild_fever"]},
+        {"id": "high", "label": "High (> 39.0°C / 102.2°F)", "maps_to_symptoms": ["high_fever", "fever"], "removes_symptoms": ["mild_fever"]}
+      ],
+      "relevance": "Differentiates mild viral upper respiratory illnesses from high-inflammatory viral syndromes or bacteremia."
+    },
+    {
+      "id": "CQ-02",
+      "question": "How long have you experienced these symptoms?",
+      "symptom_trigger": "always",
+      "answer_type": "single_choice",
+      "options": [
+        {"id": "<1d", "label": "Less than 24 hours (< 1 day)", "duration_bucket": "<1d"},
+        {"id": "1-3d", "label": "1 to 3 days", "duration_bucket": "1-3d"},
+        {"id": "3-7d", "label": "3 to 7 days", "duration_bucket": "3-7d"},
+        {"id": "1-4w", "label": "1 to 4 weeks", "duration_bucket": "1-4w"},
+        {"id": ">4w", "label": "More than 4 weeks (Chronic)", "duration_bucket": ">4w"}
+      ],
+      "relevance": "Crucial temporal marker to distinguish acute infections from subacute or chronic diseases (e.g. COPD, IBS, Hypothyroidism)."
+    },
+    {
+      "id": "CQ-03",
+      "question": "What does your cough feel like?",
+      "symptom_trigger": "cough",
+      "answer_type": "single_choice",
+      "options": [
+        {"id": "dry", "label": "Dry, tickly, non-productive", "maps_to_symptoms": ["dry_cough"], "removes_symptoms": ["productive_cough"]},
+        {"id": "productive", "label": "Chesty, producing phlegm or mucus", "maps_to_symptoms": ["productive_cough"], "removes_symptoms": ["dry_cough"]},
+        {"id": "blood", "label": "Contains streaks of blood or rust colored", "maps_to_symptoms": ["coughing_blood", "productive_cough"], "removes_symptoms": []}
+      ],
+      "relevance": "Distinguishes upper viral cough/asthma from lower airway alveolar exudative processes (pneumonia, bronchitis) and red-flag hemoptysis."
+    },
+    {
+      "id": "CQ-04",
+      "question": "Have you had any known exposure or travel?",
+      "symptom_trigger": "always",
+      "answer_type": "multi_choice",
+      "options": [
+        {"id": "sick_contact", "label": "Close contact with someone who has flu/COVID or similar illness", "risk_factor": "sick_contact"},
+        {"id": "tropical_travel", "label": "Recent travel to tropical / mosquito-prone regions (within 2 weeks)", "risk_factor": "tropical_travel"},
+        {"id": "none", "label": "None of the above", "risk_factor": null}
+      ],
+      "relevance": "Increases epidemiological prior probability for specific vector-borne or airborne infections."
+    }
+  ]
+}
