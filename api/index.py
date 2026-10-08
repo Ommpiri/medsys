@@ -21,9 +21,11 @@ engine = ClinicalExpertEngine()
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         parsed = urllib.parse.urlparse(self.path)
-        path = parsed.path
+        path = parsed.path.rstrip("/")
+        # Normalize: ensure path without trailing slash and match either with or without /api prefix
+        subpath = path[4:] if path.startswith("/api") else path
 
-        if path in ["/api/health", "/api/health/"]:
+        if subpath in ["/health", ""]:
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.send_header("Access-Control-Allow-Origin", "*")
@@ -31,7 +33,7 @@ class handler(BaseHTTPRequestHandler):
             self.wfile.write(json.dumps({"status": "healthy", "service": "MedExpert Vercel Serverless API", "version": "2.0.0"}).encode("utf-8"))
             return
 
-        elif path in ["/api/stats", "/api/stats/"]:
+        elif subpath == "/stats":
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.send_header("Access-Control-Allow-Origin", "*")
@@ -40,7 +42,7 @@ class handler(BaseHTTPRequestHandler):
             self.wfile.write(json.dumps(stats).encode("utf-8"))
             return
 
-        elif path.startswith("/api/symptoms/search"):
+        elif subpath.startswith("/symptoms/search"):
             qs = urllib.parse.parse_qs(parsed.query)
             q = qs.get("q", [""])[0]
             cat = qs.get("category", ["All"])[0]
@@ -55,13 +57,14 @@ class handler(BaseHTTPRequestHandler):
         self.send_response(404)
         self.send_header("Content-Type", "application/json")
         self.end_headers()
-        self.wfile.write(json.dumps({"error": "Endpoint not found"}).encode("utf-8"))
+        self.wfile.write(json.dumps({"error": f"Endpoint not found: {self.path}"}).encode("utf-8"))
 
     def do_POST(self):
         parsed = urllib.parse.urlparse(self.path)
-        path = parsed.path
+        path = parsed.path.rstrip("/")
+        subpath = path[4:] if path.startswith("/api") else path
 
-        if path in ["/api/diagnose", "/api/diagnose/"]:
+        if subpath == "/diagnose":
             content_length = int(self.headers.get("Content-Length", 0))
             post_data = self.rfile.read(content_length)
             try:
