@@ -34,6 +34,30 @@ class handler(BaseHTTPRequestHandler):
                     self.wfile.write(f.read())
                 return
 
+        # Serve CSS, JS, and Assets static files
+        clean_path = path.lstrip("/")
+        local_target = os.path.join(BASE_DIR, clean_path.replace("/", os.sep))
+        if clean_path.startswith(("css/", "js/", "assets/")) and os.path.isfile(local_target):
+            mime_type = "text/plain"
+            if clean_path.endswith(".css"):
+                mime_type = "text/css; charset=utf-8"
+            elif clean_path.endswith(".js"):
+                mime_type = "application/javascript; charset=utf-8"
+            elif clean_path.endswith((".jpg", ".jpeg")):
+                mime_type = "image/jpeg"
+            elif clean_path.endswith(".png"):
+                mime_type = "image/png"
+            elif clean_path.endswith(".svg"):
+                mime_type = "image/svg+xml"
+
+            self.send_response(200)
+            self.send_header("Content-Type", mime_type)
+            self.send_header("Cache-Control", "public, max-age=86400")
+            self.end_headers()
+            with open(local_target, "rb") as f:
+                self.wfile.write(f.read())
+            return
+
         subpath = path[4:] if path.startswith("/api") else path
 
         if subpath in ["/health", "/api/health"]:
