@@ -23,9 +23,20 @@ class handler(BaseHTTPRequestHandler):
         parsed = urllib.parse.urlparse(self.path)
         path = parsed.path.rstrip("/")
         # Normalize: ensure path without trailing slash and match either with or without /api prefix
+        # If root or index.html is requested, serve the frontend HTML
+        if path in ["", "/index.html"]:
+            index_file = os.path.join(BASE_DIR, "index.html")
+            if os.path.exists(index_file):
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.end_headers()
+                with open(index_file, "rb") as f:
+                    self.wfile.write(f.read())
+                return
+
         subpath = path[4:] if path.startswith("/api") else path
 
-        if subpath in ["/health", ""]:
+        if subpath in ["/health", "/api/health"]:
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.send_header("Access-Control-Allow-Origin", "*")
